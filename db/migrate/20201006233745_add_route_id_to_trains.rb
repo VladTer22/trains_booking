@@ -1,5 +1,5 @@
 class AddRouteIdToTrains < ActiveRecord::Migration[6.0]
   def change
-    add_column :trains, :route_id, :integer
+    add_belongs_to :trains, :route
   end
 end

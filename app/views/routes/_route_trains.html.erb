@@ -1,0 +1,7 @@
+<% if @route.trains.present? %>
+  <% @route.trains.each do |train| %>
+    <%= train.number %>
+  <% end %>
+<% else %>
+  Haven't trains!
+<% end %>

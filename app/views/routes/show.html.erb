@@ -5,5 +5,19 @@
   <%= @route.name %>
 </p>
 
+<%
+=begin%>
+ <p>
+  <strong>Stations on the route:</strong>
+  <%= render 'route_stations' %>
+</p> 
+<%
+=end%>
+
+<p>
+  <strong>Trains on the route:</strong>
+  <%= render 'route_trains' %>
+</p>
+
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>
