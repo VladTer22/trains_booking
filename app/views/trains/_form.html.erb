@@ -7,7 +7,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :route %><br>
+    <%= form.label :route, 'Current route' %>
     <%= form.collection_select :route_id, Route.all, :id, :name %>
   </div>
 

@@ -1,0 +1,12 @@
+<%= @train.carriages.length %><br>
+<% a, b, c, d, e, f = 0, 0, 0, 0, 0, 0 %>
+<% @train.carriages.each do |carriage| %>
+  <% if carriage.type_carriage == 'compartment' %>
+    <% a += 1 %><% b += carriage.top_seats %><% c += carriage.bottom_seats %>
+  <% elsif carriage.type_carriage == 'econom' %>
+    <% d += 1 %><% e += carriage.top_seats %><% f += carriage.bottom_seats %>
+  <% end %>
+<% end %>
+
+<strong>Compartment</strong> carriages: <%= a %>, Top seats: <%= b %>, Bottom seats <%= c %><br>
+<strong>Econom</strong> carriages: <%= d %>, Top seats: <%= e %>, Bottom seats <%= f %>
