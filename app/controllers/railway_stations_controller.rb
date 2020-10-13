@@ -19,10 +19,8 @@ class RailwayStationsController < ApplicationController
     respond_to do |format|
       if @railway_station.save
         format.html { redirect_to @railway_station, notice: 'Railway station was successfully created.' }
-        format.json { render :show, status: :created, location: @railway_station }
       else
         format.html { render :new }
-        format.json { render json: @railway_station.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -31,19 +29,22 @@ class RailwayStationsController < ApplicationController
     respond_to do |format|
       if @railway_station.update(railway_station_params)
         format.html { redirect_to @railway_station, notice: 'Railway station was successfully updated.' }
-        format.json { render :show, status: :ok, location: @railway_station }
       else
         format.html { render :edit }
-        format.json { render json: @railway_station.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_position
+    @route = Route.find(params[:route_id])
+    @railway_station.update_position(@route, params[:station_number])
+    redirect_to route_path(@route)
   end
 
   def destroy
     @railway_station.destroy
     respond_to do |format|
       format.html { redirect_to railway_stations_url, notice: 'Railway station was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
