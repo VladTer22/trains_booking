@@ -15,7 +15,7 @@ class RoutesController < ApplicationController
     @route = Route.new(route_params)
 
     if @route.save
-      redirect_to @route
+      redirect_to @route, notice: 'Route was successfully created.'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class RoutesController < ApplicationController
 
   def update
     if @route.update(route_params)
-      redirect_to @route
+      redirect_to @route, notice: 'Route was successfully updated.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class RoutesController < ApplicationController
 
   def destroy
     @route.destroy
-    redirect_to routes_path
+    redirect_to routes_path, notice: 'Route was successfully destroyed.'
   end
 
   private

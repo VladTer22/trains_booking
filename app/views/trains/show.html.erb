@@ -11,11 +11,12 @@
 </p>
 
 <p>
-  <strong>All carriages:</strong>
-  <% @train.carriages.ordered.each do |carriage| %>
-    <%= link_to "Carriage N#{carriage.number}", carriage %>
-  <% end %><br>
+  <strong>Carriages:</strong>
   <%= render 'train_carriages' %>
+</p>
+
+<p>
+  <%= link_to 'Add carriage', new_train_carriage_path(@train) %>
 </p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |

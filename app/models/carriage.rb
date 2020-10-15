@@ -2,19 +2,21 @@ class Carriage < ApplicationRecord
   belongs_to :train
 
   before_validation :set_carriage_number
-  validates :number, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats,
-            :seat_seats, :train_id, numericality: { greater_than_or_equal_to: 1 }, presence: true
+
+  validates :number, :type, :train, presence: true
   validates :number, uniqueness: { scope: :train_id }
 
-  default_scope { order(:number) }
-  scope :econom, -> { where(type: 'CarriageEconom') }
-  scope :compartment, -> { where(type: 'CarriageCompartment') }
   scope :ordered, -> { order(:number) }
 
-  CARRIAGE_TYPE = %w[compartment econom sv seating].freeze
+  CARRIAGE_TYPE = %w[CarriageCompartment CarriageEconom CarriageSv CarriageSeating].freeze
+  SEAT_TYPE = %i[top_seats bottom_seats side_top_seats side_bottom_seats seat_seats].freeze
 
   def self.type_carriage
     CARRIAGE_TYPE
+  end
+
+  def self.type_seat
+    SEAT_TYPE
   end
 
   protected

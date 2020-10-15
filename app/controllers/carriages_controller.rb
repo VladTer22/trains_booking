@@ -1,21 +1,20 @@
 class CarriagesController < ApplicationController
   before_action :set_carriage, only: %i[show edit update destroy]
+  before_action :set_train, only: %i[new create]
 
-  def index
-    @carriages = Carriage.all
-  end
+  def index; end
 
   def show; end
 
   def new
-    @carriage = Carriage.new
+    @carriage = @train.carriages.build
   end
 
   def create
-    @carriage = Carriage.new(carriage_params)
+    @carriage = @train.carriages.build(carriage_params)
 
     if @carriage.save
-      redirect_to carriages_path, note: 'Carriage was created'
+      redirect_to @train, notice: 'Carriage was successfully created.'
     else
       render :new
     end
@@ -23,17 +22,11 @@ class CarriagesController < ApplicationController
 
   def edit; end
 
-  def update
-    if @carriage.update(carriage_params)
-      redirect_to @carriage
-    else
-      render :edit
-    end
-  end
+  def update; end
 
   def destroy
     @carriage.destroy
-    redirect_to carriages_path
+    redirect_to @carriage.train, notice: 'Carriage was successfully destroyed.'
   end
 
   private
@@ -42,8 +35,12 @@ class CarriagesController < ApplicationController
     @carriage = Carriage.find(params[:id])
   end
 
+  def set_train
+    @train = Train.find(params[:train_id])
+  end
+
   def carriage_params
-    params.require(:carriage).permit(:number, :type_carriage, :top_seats, :bottom_seats,
-                                     :side_top_seats, :side_bottom_seats, :seat_seats, :train_id)
+    params.require(:carriage).permit(:number, :type, :top_seats, :bottom_seats, :side_top_seats,
+                                     :side_bottom_seats, :seat_seats)
   end
 end

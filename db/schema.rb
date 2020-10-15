@@ -14,16 +14,16 @@ ActiveRecord::Schema.define(version: 2020_10_13_060458) do
 
   create_table "carriages", force: :cascade do |t|
     t.integer "number"
-    t.string "type_carriage"
     t.integer "top_seats"
     t.integer "bottom_seats"
-    t.integer "train_id"
     t.integer "side_top_seats"
     t.integer "side_bottom_seats"
     t.integer "seat_seats"
+    t.integer "train_id"
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["train_id"], name: "index_carriages_on_train_id"
   end
 
   create_table "railway_stations", force: :cascade do |t|
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_10_13_060458) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "current_station_id"
     t.integer "route_id"
-    t.boolean "sort_order", default: true
+    t.boolean "sort_order", default: false
     t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
   end

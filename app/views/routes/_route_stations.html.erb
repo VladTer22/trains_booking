@@ -1,7 +1,26 @@
 <% if @route.railway_stations.present? %>
-  <% @route.railway_stations.ordered.each do |station| %>
-    <%= station.title %>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Position</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @route.railway_stations.each do |station| %>
+        <tr>
+          <td><%= station.title %></td>
+          <td>
+            <%= form_tag update_position_railway_station_path(station), method: :patch do %>
+              <%= number_field_tag :station_number, station.position_in(@route) %>
+              <%= hidden_field_tag :route_id, @route.id %>
+              <%= submit_tag 'Edit' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   Haven't stations!
 <% end %>

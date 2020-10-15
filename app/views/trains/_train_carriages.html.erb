@@ -1,11 +1,38 @@
-<% a, b, c, d, e, f = 0, 0, 0, 0, 0, 0 %>
-<% @train.carriages.each do |carriage| %>
-  <% if carriage.type_carriage == 'compartment' %>
-    <% a += 1 %><% b += carriage.top_seats %><% c += carriage.bottom_seats %>
-  <% elsif carriage.type_carriage == 'econom' %>
-    <% d += 1 %><% e += carriage.top_seats %><% f += carriage.bottom_seats %>
+<div>
+  <% if @train.sort_order %>
+    <strong>from head:</strong>
+  <% else %>
+    <strong>from tail:</strong>
   <% end %>
-<% end %>
-
-<strong>Compartment</strong> carriages: <%= a %>, Top seats: <%= b %>, Bottom seats <%= c %><br>
-<strong>Econom</strong> carriages: <%= d %>, Top seats: <%= e %>, Bottom seats <%= f %>
+  <% if @train.carriages.present?  %>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Top Seats</th>
+          <th>Bottom Seats</th>
+          <th>Side top seats</th>
+          <th>Side bottom seats</th>
+          <th>Seat seats</th>
+          <th>Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @train.carriages.each do |carriage| %>
+          <tr>
+            <td><%= carriage.type %></td>
+            <td><%= carriage.top_seats %></td>
+            <td><%= carriage.bottom_seats %></td>
+            <td><%= carriage.side_top_seats %></td>
+            <td><%= carriage.side_bottom_seats %></td>
+            <td><%= carriage.seat_seats %></td>
+            <td><%= link_to "#{carriage.number}", carriage_path(carriage) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+  <% else %>
+    <br>Haven't carriages!
+  <% end %>
+</div>

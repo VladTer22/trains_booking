@@ -1,44 +1,34 @@
-<%= form_for(@carriage) do |form| %>
+<%= form_for [@train, @carriage.becomes(Carriage)] do |form| %>
   <%= render 'common/errors', resource: @carriage %>
 
   <div class="field">
-    <%= form.label :train_id, 'Train number' %>
-    <%= form.collection_select :train_id, Train.all, :id, :number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_carriage, 'Type' %>
-    <%= form.select :type_carriage, Carriage.type_carriage %>
-  </div>
-
-  <div class="field">
-    <%= form.label :number, 'Carriage number' %>
-    <%= form.number_field :number %>
+    <%= form.label :type, 'Type' %>
+    <%= form.select :type, Carriage.type_carriage %>
   </div>
 
   <div class="field">
     <%= form.label :top_seats, 'Top seats' %>
-    <%= form.number_field :top_seats %>
+    <%= form.number_field :top_seats, :value => 0, :min => 0 %>
   </div>
 
   <div class="field">
     <%= form.label :bottom_seats, 'Bottom seats' %>
-    <%= form.number_field :bottom_seats %>
+    <%= form.number_field :bottom_seats, :value => 0, :min => 0 %>
   </div>
 
   <div class="field">
     <%= form.label :side_top_seats, 'Side top seats' %>
-    <%= form.number_field :side_top_seats %>
+    <%= form.number_field :side_top_seats, :value => 0, :min => 0 %>
   </div>
 
   <div class="field">
     <%= form.label :side_bottom_seats, 'Side bottom seats' %>
-    <%= form.number_field :side_bottom_seats %>
+    <%= form.number_field :side_bottom_seats, :value => 0, :min => 0 %>
   </div>
 
   <div class="field">
     <%= form.label :seat_seats, 'Seat seats' %>
-    <%= form.number_field :seat_seats %>
+    <%= form.number_field :seat_seats, :value => 0, :min => 0 %>
   </div>
 
 

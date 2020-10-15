@@ -5,5 +5,14 @@
   <%= @railway_station.title %>
 </p>
 
+<% if @railway_station.routes.empty? %>
+  <p>Havent routes!</p>
+<% else %>
+  <strong>Routes:</strong><br>
+  <% @railway_station.routes.each do |route| %>
+    <%= route.name %><br>
+  <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_railway_station_path(@railway_station) %> |
 <%= link_to 'Back', railway_stations_path %>
