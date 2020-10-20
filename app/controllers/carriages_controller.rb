@@ -1,5 +1,6 @@
 class CarriagesController < ApplicationController
   before_action :set_carriage, only: %i[show edit update destroy]
+  before_action :set_train, only: %i[new create]
 
   def index; end
 

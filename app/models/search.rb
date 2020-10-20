@@ -5,6 +5,7 @@ class Search
   attr_reader :result
 
   validates :start_station_id, :end_station_id, presence: true
+  validate :stations_not_equal
 
   def start_station
     @start_station ||= RailwayStation.find(start_station_id)
@@ -12,6 +13,10 @@ class Search
 
   def end_station
     @end_station ||= RailwayStation.find(end_station_id)
+  end
+
+  def stations_not_equal
+    errors.add(:base, 'You can\'t choose equal stations!') if start_station_id == end_station_id
   end
 
   def run
