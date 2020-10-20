@@ -17,7 +17,7 @@ class RailwayStationsController < ApplicationController
     @railway_station = RailwayStation.new(railway_station_params)
 
     if @railway_station.save
-      redirect_to @railway_station
+      redirect_to @railway_station, notice: 'Station was successfully created.'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class RailwayStationsController < ApplicationController
 
   def update
     if @railway_station.update(railway_station_params)
-      redirect_to @railway_station
+      redirect_to @railway_station, notice: 'Station was successfully updated.'
     else
       render :edit
     end
@@ -33,15 +33,13 @@ class RailwayStationsController < ApplicationController
 
   def update_position
     @route = Route.find(params[:route_id])
-    @railway_station.update_position(@route, params[:station_number])
+    @railway_station.update_position(@route, params[:station_number], params[:arrival_time], params[:departure_time])
     redirect_to route_path(@route)
   end
 
   def destroy
     @railway_station.destroy
-    respond_to do |format|
-      format.html { redirect_to railway_stations_url, notice: 'Railway station was successfully destroyed.' }
-    end
+    redirect_to railway_stations_url, notice: 'Station was successfully destroyed.'
   end
 
   private

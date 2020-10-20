@@ -1,0 +1,27 @@
+<h2>Tickets:</h2>
+
+<table class="table table-striped">
+
+  <thead>
+    <th>Passenger name:</th>
+    <th>Passport:</th>
+    <th>Train:</th>
+    <th>Start station:</th>
+    <th>End station:</th>
+  </thead>
+
+  <tbody>
+  <% @tickets.each do |t| %>
+    <tr>
+      <td><%= t.passenger_name %></td>
+      <td><%= t.passport_number %></td>
+      <td><%= t.train.number %></td>
+      <td><%= t.start_station.title %></td>
+      <td><%= t.end_station.title %></td>
+
+      <td><%= link_to 'Show', ticket_path(t) %></td>
+      <td><%= link_to 'Delete', ticket_path(t), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

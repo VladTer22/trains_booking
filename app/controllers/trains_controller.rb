@@ -25,7 +25,7 @@ class TrainsController < ApplicationController
 
   def update
     if @train.update(train_params)
-      edirect_to @train, notice: 'Train was successfully updated.'
+      redirect_to @train, notice: 'Train was successfully updated.'
     else
       render :edit
     end

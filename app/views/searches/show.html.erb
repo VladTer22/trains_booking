@@ -1,0 +1,56 @@
+<h2>Search ticket</h2>
+
+<%= form_for(@search, method: :post, url: search_path) do |f| %>
+
+<%= render 'common/errors', resource: @search %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :start_station_id, 'Start station:' %>
+        <%= f.collection_select :start_station_id, RailwayStation.ordered_by_title, :id, :title, {} %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :end_station_id, 'End station:' %>
+        <%= f.collection_select :end_station_id, RailwayStation.ordered_by_title, :id, :title, {} %>
+      </div>
+      <div class="col-md-4">
+        <%= f.submit 'Search' %>
+      </div>
+    </div>
+  </div>
+<% end %>  
+  <% if @search.result %>
+    <% if @search.result.empty?  %>
+      <p ><h4 class="text-danger">Haven't routes!</h4></p>
+    <% else %>
+      <h2><%= 'Result: ' %></h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <td><%= 'Train: ' %></td>
+              <td><%= 'Route: ' %></td>
+              <td><%= 'Arrival: ' %></td>
+              <td><%= 'Departure: ' %></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @search.result.each do |t| %>
+            <tr>
+              <td><%= t.number %></td>
+              <td><%= t.route.name %></td>
+              <td><%= @search.start_station.arrival_time(t.route) %></td>
+              <td><%= @search.end_station.departure_time(t.route) %></td>
+              <td>
+                <%= form_tag (new_ticket_path) do %>
+                <%= hidden_field_tag :start_station_id, @search.start_station_id %>
+                <%= hidden_field_tag :end_station_id, @search.end_station_id %>
+                <%= hidden_field_tag :train_id, t.id %>
+                <%= submit_tag 'Buy ticket' %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+    <% end %>
+  <% end %>

@@ -1,0 +1,31 @@
+<h2>Edit ticket</h2>
+
+<p>
+  <table>
+    <tbody>
+      <tr>
+        <th>Train:</th>
+        <td><%= @ticket.train.number %></td>
+      </tr>
+
+      <tr>
+        <th>Route:</th>
+        <td><%= @ticket.train.route.name %></td>
+      </tr>
+
+      <tr>
+        <th>Start station:</th>
+        <td><%= @ticket.start_station.title %></td>
+      </tr>
+
+      <tr>
+        <th>End station:</th>
+        <td><%= @ticket.end_station.title %></td>
+      </tr>
+    </tbody>
+  </table>
+</p>
+
+<p>
+  <%= link_to 'Tickets', tickets_path %>
+</p>

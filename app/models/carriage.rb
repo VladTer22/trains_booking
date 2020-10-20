@@ -22,8 +22,7 @@ class Carriage < ApplicationRecord
   protected
 
   def set_carriage_number
-    carriage_max_number = train.carriages.maximum(:number)
-    carriage_max_number = 0 if carriage_max_number.nil?
+    carriage_max_number = train.carriages.maximum(:number) || 0
     self.number = carriage_max_number + 1
   end
 end
