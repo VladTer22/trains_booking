@@ -19,9 +19,9 @@
       <td><%= t.start_station.title %></td>
       <td><%= t.end_station.title %></td>
 
-      <td><%= link_to 'Show', ticket_path(t) %></td>
-      <td><%= link_to 'Edit', edit_ticket_path(t) %></td>
-      <td><%= link_to 'Delete', ticket_path(t), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Show', admin_ticket_path(t) %></td>
+      <td><%= link_to 'Edit', edit_admin_ticket_path(t) %></td>
+      <td><%= link_to 'Delete', admin_ticket_path(t), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   </tbody>

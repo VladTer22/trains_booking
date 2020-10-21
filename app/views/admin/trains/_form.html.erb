@@ -1,0 +1,22 @@
+<%= form_for [:admin, @train] do |form| %>
+  <%= render 'common/errors', resource: @train %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :route, 'Current route' %>
+    <%= form.collection_select :route_id, Route.all, :id, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Sort' %>
+    <%= form.select :sort_order, [true, false], {}, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "#{@train.new_record? ? 'Create' : 'Edit'}" %>
+  </div>
+<% end %>

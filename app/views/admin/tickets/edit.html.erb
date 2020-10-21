@@ -1,7 +1,7 @@
 <h2>Edit ticket</h2>
 
 <table>
-  <tbody align="left">
+  <tbody>
   <tr>
     <th>Train:</th>
     <td><%= @ticket.train.number %></td>
@@ -24,5 +24,5 @@
 <%= render 'form', ticket: @ticket %>
 
 <p>
-  <%= link_to 'Tickets', tickets_path %>
+  <%= link_to 'Tickets', admin_tickets_path %>
 </p>

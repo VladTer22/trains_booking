@@ -1,0 +1,16 @@
+<p>
+  <strong>Title:</strong>
+  <%= @railway_station.title %>
+</p>
+
+<% if @railway_station.routes.empty? %>
+  <p>Havent routes!</p>
+<% else %>
+  <strong>Routes:</strong><br>
+  <% @railway_station.routes.each do |route| %>
+    <%= route.name %><br>
+  <% end %>
+<% end %>
+
+<%= link_to 'Edit', edit_admin_railway_station_path(@railway_station) %> |
+<%= link_to 'Back', admin_railway_stations_path %>

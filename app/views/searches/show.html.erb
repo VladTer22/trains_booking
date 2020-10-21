@@ -29,8 +29,8 @@
             <tr>
               <td><%= 'Train: ' %></td>
               <td><%= 'Route: ' %></td>
-              <td><%= 'Arrival: ' %></td>
               <td><%= 'Departure: ' %></td>
+              <td><%= 'Arrival: ' %></td>
             </tr>
           </thead>
           <tbody>
@@ -38,8 +38,8 @@
             <tr>
               <td><%= t.number %></td>
               <td><%= t.route.name %></td>
-              <td><%= @search.start_station.arrival_time(t.route) %></td>
               <td><%= @search.end_station.departure_time(t.route) %></td>
+              <td><%= @search.start_station.arrival_time(t.route) %></td>
               <td>
                 <%= form_tag (new_ticket_path) do %>
                 <%= hidden_field_tag :start_station_id, @search.start_station_id %>

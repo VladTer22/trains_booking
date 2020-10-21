@@ -1,0 +1,21 @@
+<p>
+  <strong>Number:</strong>
+  <%= @train.number %>
+</p>
+
+<p>
+  <strong>Route:</strong>
+  <%= render 'train_route' %>
+</p>
+
+<p>
+  <strong>Carriages:</strong>
+  <%= render 'train_carriages' %>
+</p>
+
+<p>
+  <%= link_to 'Add carriage', new_admin_train_carriage_path(@train) %>
+</p>
+
+<%= link_to 'Edit', edit_admin_train_path(@train) %> |
+<%= link_to 'Back', admin_trains_path %>

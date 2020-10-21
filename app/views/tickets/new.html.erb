@@ -21,28 +21,8 @@
   </tbody>
 </table>
 
-<div class="row">
-  <div class="col-md-4">
-    <h2>Passenger:</h2>
-      <%= form_for(@ticket) do |f| %>
-      <%= render 'common/errors', resource: @ticket %>
-        <%= f.hidden_field :train_id %>
-        <%= f.hidden_field :start_station_id %>
-        <%= f.hidden_field :end_station_id %>
-        <div>
-          <%= f.label :passenger_name, 'Name:' %>
-          <%= f.text_field :passenger_name %>
-        </div>
-        <div>
-          <%= f.label :passport_number, 'Passport:' %>
-          <%= f.text_field :passport_number %>
-        </div>
-        <div>
-          <%= f.submit 'Buy' %>
-        </div>
-    <% end %>
-  </div>
-</div>
+<%= render 'form', ticket: @ticket %>
+
 <p>
-  <%= link_to 'Tickets', tickets_path %><br>
+  <%= link_to 'Tickets', tickets_path %>
 </p>

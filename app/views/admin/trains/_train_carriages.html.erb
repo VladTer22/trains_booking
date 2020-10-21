@@ -1,0 +1,38 @@
+<div>
+  <% if @train.sort_order %>
+    <strong>from head:</strong>
+  <% else %>
+    <strong>from tail:</strong>
+  <% end %>
+  <% if @train.carriages.present?  %>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Top Seats</th>
+          <th>Bottom Seats</th>
+          <th>Side top seats</th>
+          <th>Side bottom seats</th>
+          <th>Seat seats</th>
+          <th>Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @train.carriages.each do |carriage| %>
+          <tr>
+            <td><%= carriage.type %></td>
+            <td><%= carriage.top_seats %></td>
+            <td><%= carriage.bottom_seats %></td>
+            <td><%= carriage.side_top_seats %></td>
+            <td><%= carriage.side_bottom_seats %></td>
+            <td><%= carriage.seat_seats %></td>
+            <td><%= link_to "#{carriage.number}", admin_carriage_path(carriage) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+  <% else %>
+    <br>Haven't carriages!
+  <% end %>
+</div>

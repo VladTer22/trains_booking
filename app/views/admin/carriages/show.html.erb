@@ -1,0 +1,20 @@
+<p>
+  Carriage number:
+  <%= @carriage.number %><br>
+  Train:
+  <%= @carriage.train.number %><br>
+  Top_seats:
+  <%= @carriage.top_seats %><br>
+  Bottom_seats:
+  <%= @carriage.bottom_seats %><br>
+  Side top seats:
+  <%= @carriage.side_top_seats %><br>
+  Side bottom seats:
+  <%= @carriage.side_bottom_seats %><br>
+  Seat seats:
+  <%= @carriage.seat_seats %>
+</p>
+
+<strong><%= link_to 'Destroy this carriage', admin_carriage_path,
+            method: :delete, data: { confirm: 'Are you sure?' } %></strong><br>
+<%= link_to 'Back', admin_train_path(@carriage.train) %>

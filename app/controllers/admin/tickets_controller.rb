@@ -1,10 +1,9 @@
-class TicketsController < ApplicationController
-  before_action :authenticate_user!
+class Admin::TicketsController < Admin::BaseController
   before_action :set_params, only: %i[new]
   before_action :set_ticket, only: %i[show destroy update edit]
 
   def index
-    @tickets = current_user.tickets
+    @tickets = Ticket.all
   end
 
   def show; end
@@ -18,7 +17,7 @@ class TicketsController < ApplicationController
     @ticket = current_user.tickets.new(ticket_params)
 
     if @ticket.save
-      redirect_to @ticket, notice: 'Ticket was successfully created.'
+      redirect_to admin_ticket_path(@ticket), notice: 'Ticket was successfully created.'
     else
       render :show
     end
@@ -26,7 +25,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to @ticket, notice: 'Ticket was successfully updated.'
+      redirect_to admin_ticket_path(@ticket), notice: 'Ticket was successfully updated.'
     else
       render :new
     end
@@ -34,7 +33,7 @@ class TicketsController < ApplicationController
 
   def destroy
     @ticket.destroy
-    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
+    redirect_to admin_tickets_url, notice: 'Ticket was successfully destroyed.'
   end
 
   private
@@ -51,7 +50,6 @@ class TicketsController < ApplicationController
   end
 
   def set_ticket
-    @ticket = current_user.tickets.find(params[:id])
-    redirect_to my_tickets_path unless @ticket.user == current_user
+    @ticket = Ticket.find(params[:id])
   end
 end

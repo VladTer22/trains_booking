@@ -1,4 +1,15 @@
-<%= link_to 'Trains', trains_path %>
-<%= link_to 'Stations', railway_stations_path %>
-<%= link_to 'Routes', routes_path %>
-<%= link_to 'Search', search_path %>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <%= link_to 'Trains', admin_trains_path %>
+    <%= link_to 'Stations', admin_railway_stations_path %>
+    <%= link_to 'Routes', admin_routes_path %>
+    <%= link_to 'All tickets', admin_tickets_path %>
+  <% else %>
+    <%= link_to 'My tickets', tickets_path %>
+  <% end %>
+  <%= link_to 'Search', search_path %>
+  <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+  <p> Hi there, <%= current_user.first_name %> </p>
+<% else %>
+  <%= link_to 'Log in', new_user_session_path %>
+<% end %>
